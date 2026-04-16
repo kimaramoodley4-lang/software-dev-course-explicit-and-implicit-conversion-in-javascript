@@ -18,15 +18,36 @@ Use console.log() to clearly show the before-and-after type conversions.
 
 */
 
+// --- Bug 1: Subtraction with Strings ---
+// Fix: Use Number() to explicitly convert the string "5" before subtracting.
+let result = Number("5") - 2; 
+console.log("The result is: " + result); 
 
-let result = "5" - 2;
-console.log("The result is: " + result);
-
-let isValid = Boolean("false");
+// --- Bug 2: The Boolean String Trap ---
+// Fix: Use the literal boolean 'false'. Boolean("false") is true because it's a non-empty string.
+let isValid = false; 
 if (isValid) {
-    console.log("This is valid!");
+   console.log("This is valid!");
 }
 
+// --- Bug 3: String Concatenation vs Addition ---
+// Fix: Convert the 'age' string to a Number so the + operator adds instead of joins.
 let age = "25";
-let totalAge = age + 5;
+let totalAge = Number(age) + 5; 
 console.log("Total Age: " + totalAge);
+
+
+// Example of Implicit Type Conversion
+// JavaScript automatically converts the string to a number for multiplication.
+let implicitConversion = "10" * 3;
+console.log("Implicit Result (10 * 3): " + implicitConversion);
+
+// Example of Explicit Type Conversion with an Edge Case (null)
+// Manually changing 'null' to a String to see how JavaScript handles it.
+let mysteryValue = null;
+let explicitConversion = String(mysteryValue);
+
+console.log("Before conversion type: " + typeof mysteryValue); // object (null)
+console.log("After conversion type: " + typeof explicitConversion); // string
+console.log("The string value is now: " + explicitConversion); // "null"
+
